@@ -21,6 +21,9 @@ app.use(cors({
 connectDB();
 app.use(express.json());
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/service', require('./routes/serviceRoutes'));
+app.use('/api/booking', require('./routes/bookAppRoutes'));
+app.use('/api/contact', require('./routes/contactRoutes'));
 app.use(errorHandler)
 
 app.listen(port, () => {
