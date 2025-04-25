@@ -44,6 +44,16 @@ const Findbooking = asyncHandler(async (req, res) => {
   }
 });
 
+const FindAllBookings = asyncHandler(async (req, res) => {
+  const Appoins = await Appoi.find({  });
+  if (Appoins) {
+    res.status(200).json({ data: Appoins });
+  } else {
+    res.status(401);
+    throw new Error(' Not Found');
+  }
+});
+
 
 
 
@@ -52,4 +62,5 @@ const Findbooking = asyncHandler(async (req, res) => {
 module.exports = {
     newAppointment,
     Findbooking,
+    FindAllBookings
 }

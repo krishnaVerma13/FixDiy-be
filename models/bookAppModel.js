@@ -8,12 +8,12 @@ const bookappSchema = mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please add an email"],
-        unique: true,
+        
     },
     phone: {
         type: String,
         required: [true, "Please add a phone number"],
-        unique: true,
+        
     },
     service: {
         type: String,

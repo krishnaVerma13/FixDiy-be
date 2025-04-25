@@ -66,14 +66,14 @@ const loginService= asyncHandler(async (req, res) => {
         //generate token
       const accessToken = jwt.sign({
         spuser: {
-            username: user.username,
-            email: user.email,
-            id: user.id,
+            username: spuser.username,
+            email: spuser.email,
+            id: spuser.id,
         },
       }, key, // replace with your secret key
         
       { expiresIn: "15m" });  
-       res.status(200).json({ accessToken }); 
+       res.status(200).json({ tkn:accessToken,data: spuser }); 
     } else {
         res.status(401);
         throw new Error("Invalid credentia  ls");
@@ -87,9 +87,20 @@ const currentService = asyncHandler(async (req, res) => {
     res.status(200).json(req.spuser);
   });
 
+  const FindAllsp = asyncHandler(async (req, res) => {
+    const spuser = await Service.find({ });
+    if (spuser) {
+      res.status(200).json({ data: spuser });
+    } else {
+      res.status(401);
+      throw new Error('service provider User Not Found');
+    }
+  });
+
 module.exports = {
     registerService,
     loginService,
     currentService,
     Findsp,
+    FindAllsp
 }

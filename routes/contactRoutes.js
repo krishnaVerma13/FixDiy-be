@@ -7,6 +7,6 @@ router.post('/newmessage', newMessage)
 
 router.post('/findmessage', Findmessage);
 
-router.get('/getallmessage', validateToken , getallmwssage); 
+router.get('/getallmessage' , getallmwssage); 
 
 module.exports = router;

@@ -71,7 +71,7 @@ const loginUser= asyncHandler(async (req, res) => {
       }, key, // replace with your secret key
         
       { expiresIn: "15m" });  
-       res.status(200).json({ accessToken }); 
+       res.status(200).json({ tkn:accessToken,data:user }); 
     } else {
         res.status(401);
         throw new Error("Invalid credentia  ls");
@@ -85,9 +85,20 @@ const currentUser = asyncHandler(async (req, res) => {
     res.status(200).json(req.user);
   });
 
+  const FindAllUser = asyncHandler(async (req, res) => {
+    const user = await User.find({});
+    if (user) {
+      res.status(200).json({ data: user });
+    } else {
+      res.status(401);
+      throw new Error('User Not Found');
+    }
+  });
+
 module.exports = {
     registerUser,
     loginUser,
     currentUser,
     FindUser,
+    FindAllUser
 }
